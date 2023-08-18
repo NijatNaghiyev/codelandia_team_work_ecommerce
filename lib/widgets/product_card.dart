@@ -31,6 +31,7 @@ class ProductCard extends StatelessWidget {
               crossAxisSpacing: 10,
             ),
             itemBuilder: (context, index) => Container(
+              clipBehavior: Clip.hardEdge,
               width: MediaQuery.sizeOf(context).width * 0.4,
               height: MediaQuery.sizeOf(context).height * 0.17,
               decoration: BoxDecoration(
@@ -52,6 +53,7 @@ class ProductCard extends StatelessWidget {
                     child: Image.network(
                       getController.productListGetX[index].images.last,
                       height: Get.height * 0.1,
+                      width: double.infinity,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -73,21 +75,39 @@ class ProductCard extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: const TextStyle(
+                                  color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
-                            RatingBarIndicator(
-                              rating:
-                                  getController.productListGetX[index].rating,
-                              itemBuilder: (context, index) => const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              itemCount: 5,
-                              itemSize: 15.0,
-                              direction: Axis.horizontal,
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  getController.productListGetX[index].rating
+                                      .toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                RatingBarIndicator(
+                                  rating: getController
+                                      .productListGetX[index].rating,
+                                  itemBuilder: (context, index) => const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  itemCount: 5,
+                                  itemSize: 15.0,
+                                  direction: Axis.horizontal,
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -127,6 +147,9 @@ class ProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     "\$${getController.productListGetX[index].price}",
                     style: const TextStyle(
@@ -134,6 +157,9 @@ class ProductCard extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                 ],
               ),

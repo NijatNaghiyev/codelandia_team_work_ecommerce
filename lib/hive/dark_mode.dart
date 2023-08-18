@@ -9,6 +9,8 @@ void initialTheme() {
 }
 
 void changeTheme() {
-  Get.changeTheme(Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+  Get.changeTheme(
+    Get.isDarkMode ? ThemeData.light() : ThemeData.dark(),
+  );
   Hive.box('darkMode').put('isDarkMode', Get.isDarkMode);
 }

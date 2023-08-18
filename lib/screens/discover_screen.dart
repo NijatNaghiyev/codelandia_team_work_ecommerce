@@ -16,6 +16,7 @@ class DiscoverScreen extends StatelessWidget {
     ProductList getController = Get.put(ProductList());
 
     TextEditingController searchController = TextEditingController();
+    getController.getData();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,7 +30,7 @@ class DiscoverScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'discover'.tr,
-                      style: GoogleFonts.rubik(
+                      style: GoogleFonts.openSans(
                         fontWeight: FontWeight.bold,
                         fontSize: 40,
                       ),
@@ -61,8 +62,10 @@ class DiscoverScreen extends StatelessWidget {
                             width: Get.width,
                             height: Get.height / 2,
                             decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.only(
+                              color: Get.isDarkMode
+                                  ? Colors.grey
+                                  : Colors.grey[300],
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(16),
                                 topRight: Radius.circular(16),
                               ),
@@ -72,7 +75,8 @@ class DiscoverScreen extends StatelessWidget {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.grey[300],
+                          color:
+                              Get.isDarkMode ? Colors.grey : Colors.grey[300],
                           borderRadius: BorderRadiusDirectional.circular(12),
                         ),
                         width: 50,
@@ -121,7 +125,7 @@ class DiscoverScreen extends StatelessWidget {
                     height: 80,
                     width: Get.width,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(20),
                         topLeft: Radius.circular(20),
@@ -131,7 +135,9 @@ class DiscoverScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 10),
                         Container(
-                          color: Colors.grey[500],
+                          color: Get.isDarkMode
+                              ? Colors.grey[300]
+                              : Colors.grey[500],
                           height: 5,
                           width: 35,
                         ),
@@ -155,8 +161,8 @@ class DiscoverScreen extends StatelessWidget {
               ),
               Container(
                 width: Get.width,
-                color: Colors.grey[300],
-                child: ProductCard(),
+                color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
+                child: const ProductCard(),
               ),
             ],
           ),
@@ -172,7 +178,7 @@ class DiscoverScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
             borderRadius: BorderRadiusDirectional.circular(12),
           ),
           height: 50,
@@ -183,9 +189,9 @@ class DiscoverScreen extends StatelessWidget {
             },
             controller: searchController,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 10, top: 15),
+              contentPadding: const EdgeInsets.only(left: 10, top: 15),
               border: InputBorder.none,
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.search,
                 color: Colors.black,
               ),
