@@ -7,6 +7,6 @@ class FavoriteList extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    favoriteList.value = Hive.box('favoriteListBox').get('favoriteList');
+    favoriteList.value = Hive.box('favoriteListBox').get('favoriteList') ?? [];
   }
 }

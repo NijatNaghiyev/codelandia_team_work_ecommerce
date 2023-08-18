@@ -15,9 +15,6 @@ void putAndRemoveFavoriteList(int id) {
 }
 
 bool isFavorite(int id) {
-  if (favoriteListController.favoriteList.isEmpty) {
-    return false;
-  }
   return favoriteListController.favoriteList.contains(id);
 }
 

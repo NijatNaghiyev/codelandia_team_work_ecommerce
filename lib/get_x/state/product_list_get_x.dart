@@ -46,6 +46,8 @@ class ProductList extends GetxController {
                 element.title.toLowerCase().contains(name.trim().toLowerCase()),
           )
           .toList());
+    } else {
+      fetchProducts().then((value) => productListGetX.value = value);
     }
   }
 }

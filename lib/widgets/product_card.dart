@@ -6,24 +6,19 @@ import 'package:get/get.dart';
 import '../hive/favorite_list_hive.dart';
 import '../screens/discover_screen.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
-
-  @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
-  bool isFavoriteBool = false;
 
   @override
   Widget build(BuildContext context) {
     ProductList getController = Get.put(ProductList());
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 3100,
-        width: Get.width,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: Get.height * 0.4,
+          minWidth: Get.width,
+        ),
         child: Obx(() {
           return GridView.builder(
             controller: scrollController,
@@ -50,20 +45,19 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                 ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        getController.productListGetX[index].images.last,
-                        // width: MediaQuery.sizeOf(context).width * 0.15,
-                        height: Get.height * 0.1,
-                        fit: BoxFit.cover,
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      getController.productListGetX[index].images.last,
+                      height: Get.height * 0.1,
+                      fit: BoxFit.fill,
                     ),
-                    Row(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
@@ -97,19 +91,26 @@ class _ProductCardState extends State<ProductCard> {
                             ),
                           ],
                         ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isFavoriteBool = !isFavoriteBool;
-                            });
-                          },
-                          icon: Icon(
-                            isFavorite(1)
-                                ? Icons.favorite
-                                : Icons.favorite_outline,
-                            color: Colors.red,
-                          ),
-                        ),
+
+                        Obx(() {
+                          return IconButton(
+                            onPressed: () {
+                              putAndRemoveFavoriteList(
+                                  getController.productListGetX[index].id);
+                              // print(getController.productListGetX[index].id);
+                              // print(isFavorite(
+                              //         getController.productListGetX[index].id)
+                              //     .toString());
+                            },
+                            icon: Icon(
+                              isFavorite(
+                                      getController.productListGetX[index].id)
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              color: Colors.red,
+                            ),
+                          );
+                        }),
                         // TextButton(
                         //   onPressed: () {
                         //     setState(() {
@@ -125,16 +126,16 @@ class _ProductCardState extends State<ProductCard> {
                         // ),
                       ],
                     ),
-                    Text(
-                      "\$${getController.productListGetX[index].price}",
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  ),
+                  Text(
+                    "\$${getController.productListGetX[index].price}",
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

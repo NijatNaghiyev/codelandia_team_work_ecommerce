@@ -10,6 +10,7 @@ ScrollController scrollController = ScrollController();
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     ProductList getController = Get.put(ProductList());
@@ -50,33 +51,25 @@ class DiscoverScreen extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadiusDirectional.circular(12)),
-                        height: 50,
-                        width: 200,
-                        child: TextField(
-                          controller: searchController,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: Colors.black,
-                            ),
-                            hintText: '  Search products',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  buildTextField(getController, searchController),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.bottomSheet(
+                          Container(
+                            width: Get.width,
+                            height: Get.height / 2,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
@@ -166,6 +159,38 @@ class DiscoverScreen extends StatelessWidget {
                 child: ProductCard(),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded buildTextField(
+      ProductList getController, TextEditingController searchController) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadiusDirectional.circular(12),
+          ),
+          height: 50,
+          width: double.infinity,
+          child: TextField(
+            onChanged: (value) {
+              getController.searchedList(value);
+            },
+            controller: searchController,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10, top: 15),
+              border: InputBorder.none,
+              suffixIcon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              hintText: '  search products'.tr,
+            ),
           ),
         ),
       ),
