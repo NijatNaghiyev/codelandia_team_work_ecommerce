@@ -1,3 +1,4 @@
+import 'package:circle_flags/circle_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,17 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             child: Card(
               child: SwitchListTile(
                 activeColor: Colors.deepOrange,
-                title: Text('english'.tr),
+                title: Row(
+                  children: [
+                    SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircleFlag('us'),
+                    ),
+                    const SizedBox(width: 10),
+                    Text('english'.tr),
+                  ],
+                ),
                 value: !languageBool,
                 onChanged: (bool value) {
                   setState(() {});
@@ -46,7 +57,17 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             child: Card(
               child: SwitchListTile(
                 activeColor: Colors.deepOrange,
-                title: Text('azerbaijani'.tr),
+                title: Row(
+                  children: [
+                    SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircleFlag('az'),
+                    ),
+                    const SizedBox(width: 10),
+                    Text('azerbaijani'.tr),
+                  ],
+                ),
                 value: languageBool,
                 onChanged: (bool value) {
                   setState(() {});

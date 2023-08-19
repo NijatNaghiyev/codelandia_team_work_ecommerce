@@ -4,13 +4,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 import '../hive/favorite_list_hive.dart';
-import '../screens/discover_screen.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController = ScrollController();
     ProductList getController = Get.put(ProductList());
     return Padding(
       padding: const EdgeInsets.all(8.0),

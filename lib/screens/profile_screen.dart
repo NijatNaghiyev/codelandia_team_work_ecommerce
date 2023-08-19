@@ -2,9 +2,9 @@ import 'package:codelandia_team_work_ecommerce/screens/languages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../hive/dark_mode.dart';
+import '../widgets/custom_icon_container.dart';
 
-bool _isDarkModeBoolean = Get.isDarkMode;
+bool isDarkModeBoolean = Get.isDarkMode;
 
 class ProfileScreen extends StatelessWidget {
   final String imageUrl;
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      Get.to(const LanguagesScreen());
+                      Get.to(() => const LanguagesScreen());
                     },
                     child: CustomIconContainer(
                       icon: Icons.language,
@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   CustomIconContainer(
-                    icon: Icons.help_center_outlined,
+                    icon: Icons.help_outline,
                     text: 'help center'.tr,
                     iconColor: Colors.orange,
                   ),
@@ -88,68 +88,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomIconContainer extends StatefulWidget {
-  final IconData icon;
-  final String text;
-  final Color iconColor;
-
-  const CustomIconContainer({
-    super.key,
-    required this.icon,
-    required this.text,
-    required this.iconColor,
-  });
-
-  @override
-  State<CustomIconContainer> createState() => _CustomIconContainerState();
-}
-
-class _CustomIconContainerState extends State<CustomIconContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Container(
-        width: Get.width,
-        height: 70,
-        decoration: BoxDecoration(
-          color: Colors.deepOrange,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Icon(widget.icon, color: Colors.white),
-            ),
-            const SizedBox(width: 15),
-            Text(
-              widget.text,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            const Spacer(),
-            widget.text == 'dark mode'.tr
-                ? Switch(
-                    activeColor: Colors.black,
-                    value: _isDarkModeBoolean,
-                    onChanged: (value) {
-                      setState(() {
-                        _isDarkModeBoolean = !Get.isDarkMode;
-                      });
-
-                      changeTheme();
-                    },
-                  )
-                : const SizedBox(),
-          ],
         ),
       ),
     );

@@ -39,6 +39,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_rating_bar: any
   intl: ^0.18.1
+  circle_flags: ^3.0.1
 
 
   cupertino_icons: ^1.0.2

@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../get_x/state/product_list_get_x.dart';
-
-ScrollController scrollController = ScrollController();
+import '../widgets/bottom_sheet.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({super.key});
@@ -58,19 +57,7 @@ class DiscoverScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Get.bottomSheet(
-                          Container(
-                            width: Get.width,
-                            height: Get.height / 2,
-                            decoration: BoxDecoration(
-                              color: Get.isDarkMode
-                                  ? Colors.grey
-                                  : Colors.grey[300],
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                              ),
-                            ),
-                          ),
+                          const BottomSheetWidget(),
                         );
                       },
                       child: Container(

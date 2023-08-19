@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void initialTheme() {
-  Get.changeTheme(Hive.box('darkMode').get('isDarkMode', defaultValue: true)
-      ? ThemeData.light()
-      : ThemeData.dark());
+  Get.changeTheme(
+    Hive.box('darkMode').get('isDarkMode', defaultValue: true)
+        ? ThemeData.light()
+        : ThemeData.dark(),
+  );
 }
 
 void changeTheme() {

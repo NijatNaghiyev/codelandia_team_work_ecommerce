@@ -12,6 +12,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     Widget activeScreen = const DiscoverScreen();
@@ -24,6 +25,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: activeScreen,
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 12,
         selectedItemColor: Colors.deepOrange,
         selectedIconTheme: const IconThemeData(color: Colors.deepOrange),
         currentIndex: _currentIndex,

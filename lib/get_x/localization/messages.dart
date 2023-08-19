@@ -4,6 +4,12 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'Submit': 'Submit',
+          'Rating': 'Rating',
+          'Filters': 'Filters',
+          'Minimum Price': 'Minimum Price',
+          'Maximum Price': 'Maximum Price',
+          'or more ratings': 'or more ratings',
           'Edit Profile': 'Edit Profile',
           'my account': 'My Account',
           '': 'Notification',
@@ -42,6 +48,12 @@ class Messages extends Translations {
           "lighting": "lighting",
         },
         'az': {
+          'Submit': 'Təsdiq et',
+          'Rating': 'Reytinq',
+          'Filters': 'Filterlər',
+          'Minimum Price': 'Minimum Qiymət',
+          'Maximum Price': 'Maksimum Qiymət',
+          'or more ratings': 'və ya daha çox reytinq',
           'Edit Profile': 'Profili düzəliş et',
           'my account': 'Hesabım',
           'notification': 'Xəbərdarlıq',
