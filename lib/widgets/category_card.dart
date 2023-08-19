@@ -3,6 +3,8 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/category_details_page.dart';
+
 class CategoryCard extends StatelessWidget {
   const CategoryCard({Key? key}) : super(key: key);
   @override
@@ -17,7 +19,19 @@ class CategoryCard extends StatelessWidget {
           itemCount: kCategoriesList.length,
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoryDetailsPage(
+                      backgroundColor: kCategoryBackgroundColor,
+                      index: index,
+                      category: kCategoriesList[index],
+                      imageUrl: kCategoryImages[kCategoriesList[index]]!,
+                    ),
+                  ),
+                );
+              },
               child: SizedBox(
                 height: 200,
                 width: 200,

@@ -85,3 +85,46 @@ const Map<String, int> kCategoryBackgroundColor = {
   "motorcycle": 0xFF5b42ff,
   "lighting": 0xFFFF1493,
 };
+
+const Map<String, String> categoryDescriptions = {
+  "smartphones":
+      "Explore a wide range of cutting-edge smartphones with advanced features and technologies, catering to your communication and entertainment needs.",
+  "laptops":
+      "Discover a collection of powerful laptops designed to enhance productivity and provide seamless computing experiences, whether for work or leisure.",
+  "fragrances":
+      "Indulge your senses with an exquisite selection of fragrances, ranging from floral and fruity to woody and oriental, perfect for personal expression.",
+  "skincare":
+      "Nurture your skin with an array of skincare products, including cleansers, moisturizers, serums, and treatments, to achieve a radiant and healthy complexion.",
+  "groceries":
+      "Find a diverse assortment of grocery items, including fresh produce, pantry staples, snacks, and beverages, to stock your kitchen with quality ingredients.",
+  "home-decoration":
+      "Elevate your living spaces with a variety of home decoration items, such as decorative accents, artwork, and furnishings, to create a personalized ambiance.",
+  "furniture":
+      "Furnish your home with stylish and functional furniture pieces, including sofas, tables, beds, and chairs, designed to enhance your living environment.",
+  "tops":
+      "Browse through a fashionable collection of tops, including shirts, blouses, and t-shirts, designed to keep you comfortable and stylish for any occasion.",
+  "womens-dresses":
+      "Explore an array of women's dresses, from casual to formal, designed to accentuate your style and grace, making you stand out at events.",
+  "womens-shoes":
+      "Step into elegance and comfort with a range of women's shoes, including heels, flats, and sneakers, catering to different tastes and preferences.",
+  "mens-shirts":
+      "Discover a variety of men's shirts, suitable for work or casual outings, offering comfort and style to complement your wardrobe.",
+  "mens-shoes":
+      "Find the perfect pair of men's shoes, whether for formal occasions or everyday wear, balancing aesthetics and functionality.",
+  "mens-watches":
+      "Adorn your wrist with sophisticated men's watches, combining style and precision to make a timeless statement.",
+  "womens-watches":
+      "Accessorize elegantly with women's watches that merge fashion and functionality, enhancing your overall ensemble.",
+  "womens-bags":
+      "Carry your essentials in style with an assortment of women's bags, including handbags, totes, and clutches, designed to complement your outfit.",
+  "womens-jewellery":
+      "Enhance your look with exquisite women's jewelry, including necklaces, earrings, and bracelets, adding a touch of glamour to any outfit.",
+  "sunglasses":
+      "Protect your eyes in style with a range of sunglasses that offer both UV protection and fashion-forward designs.",
+  "automotive":
+      "Explore automotive products and accessories, catering to car enthusiasts and those in need of reliable vehicle maintenance.",
+  "motorcycle":
+      "Find gear, accessories, and essentials for motorcycle enthusiasts, ensuring safety and style on every ride.",
+  "lighting":
+      "Illuminate your surroundings with a variety of lighting solutions, including lamps, chandeliers, and fixtures, to create the desired ambiance in your spaces."
+};

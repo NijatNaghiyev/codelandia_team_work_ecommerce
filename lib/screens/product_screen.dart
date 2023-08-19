@@ -3,6 +3,7 @@ import 'package:codelandia_team_work_ecommerce/hive/favorite_list_hive.dart';
 import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -27,17 +28,20 @@ class _ProductScreenState extends State<ProductScreen> {
             onPressed: () {},
             icon: const Icon(Icons.share),
           ),
-          IconButton(
-            onPressed: () {
-              putAndRemoveFavoriteList(widget.product.id);
-            },
-            icon: Icon(
-              isFavorite(widget.product.id)
-                  ? Icons.favorite
-                  : Icons.favorite_outline,
-              color: isFavorite(widget.product.id) ? Colors.red : Colors.white,
-            ),
-          ),
+          Obx(() {
+            return IconButton(
+              onPressed: () {
+                putAndRemoveFavoriteList(widget.product.id);
+              },
+              icon: Icon(
+                isFavorite(widget.product.id)
+                    ? Icons.favorite
+                    : Icons.favorite_outline,
+                color:
+                    isFavorite(widget.product.id) ? Colors.red : Colors.white,
+              ),
+            );
+          }),
         ],
       ),
       body: Column(
@@ -113,7 +117,6 @@ class _ProductScreenState extends State<ProductScreen> {
                         Text(
                           widget.product.rating.toString(),
                           style: const TextStyle(
-                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 25,
                           ),

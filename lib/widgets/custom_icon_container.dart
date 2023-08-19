@@ -30,7 +30,7 @@ class _CustomIconContainerState extends State<CustomIconContainer> {
         width: Get.width,
         height: 70,
         decoration: BoxDecoration(
-          color: Colors.deepOrange,
+          color: Colors.teal,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
