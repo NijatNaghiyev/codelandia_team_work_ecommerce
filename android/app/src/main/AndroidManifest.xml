@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="TODO">
     <application
-        android:label="codelandia_team_work_ecommerce"
+        android:label="Shopify"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

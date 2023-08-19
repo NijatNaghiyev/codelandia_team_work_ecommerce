@@ -10,6 +10,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('darkMode');
   await Hive.openBox('favoriteListBox');
+  await Hive.openBox('cartListBox');
   initialTheme(); // ? Dark mode
   runApp(const MyApp());
 }

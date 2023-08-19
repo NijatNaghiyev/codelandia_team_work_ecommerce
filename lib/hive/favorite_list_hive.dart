@@ -5,21 +5,21 @@ import 'package:hive_flutter/hive_flutter.dart';
 FavoriteList favoriteListController = Get.put(FavoriteList());
 
 void putAndRemoveFavoriteList(int id) {
-  if (favoriteListController.favoriteList.contains(id)) {
-    favoriteListController.favoriteList.remove(id);
+  if (favoriteListController.cartList.contains(id)) {
+    favoriteListController.cartList.remove(id);
   } else {
-    favoriteListController.favoriteList.add(id);
+    favoriteListController.cartList.add(id);
   }
   Hive.box('favoriteListBox')
-      .put('favoriteList', favoriteListController.favoriteList);
+      .put('favoriteList', favoriteListController.cartList);
 }
 
 bool isFavorite(int id) {
-  return favoriteListController.favoriteList.contains(id);
+  return favoriteListController.cartList.contains(id);
 }
 
 void clearFavoriteList() {
-  favoriteListController.favoriteList.clear();
+  favoriteListController.cartList.clear();
   Hive.box('favoriteListBox')
-      .put('favoriteList', favoriteListController.favoriteList);
+      .put('favoriteList', favoriteListController.cartList);
 }
