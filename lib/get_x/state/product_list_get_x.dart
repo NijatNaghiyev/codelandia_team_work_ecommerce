@@ -28,14 +28,12 @@ class ProductList extends GetxController {
           (element) {
             return (category.isEmpty)
                 ? (minPrice < element.price && element.price < maxPrice) &&
-                    (minRating < element.rating)
+                    (minRating <= element.rating)
                 : (minPrice < element.price && element.price < maxPrice) &&
-                    (minRating < element.rating) &&
+                    (minRating <= element.rating.toDouble()) &&
                     (category.contains(element.category.toLowerCase()));
           },
         ).toList());
-    print(category.contains(productListGetX[0].category.toLowerCase()));
-    print('ProductListGetx: ${productListGetX}');
   }
 
   /// To search for product's title

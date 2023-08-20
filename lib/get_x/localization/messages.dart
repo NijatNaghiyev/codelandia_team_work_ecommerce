@@ -6,7 +6,7 @@ class Messages extends Translations {
         'en_US': {
           'Apply filters': 'Apply filters',
           'Clear all': 'Clear all',
-          'Department': 'Department',
+          'Department': 'Brend',
           'Size': 'Size',
           'Color': 'Color',
           'prices': 'Prices',
@@ -57,7 +57,7 @@ class Messages extends Translations {
         'az': {
           'Apply filters': 'Təsdiq et',
           'Clear all': 'Təmizlə',
-          'Department': 'Şöbə',
+          'Department': 'Brend',
           'Size': 'Ölçü',
           'Color': 'Rəng',
           'prices': 'Qiymətlər',

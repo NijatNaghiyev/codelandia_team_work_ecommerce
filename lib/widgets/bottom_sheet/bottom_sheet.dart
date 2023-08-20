@@ -10,9 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utilities/constants/color.dart';
 import '../../utilities/methods/bottom_sheet_app_bar.dart';
-import '../../utilities/methods/bottom_sheet_bottom_bar.dart';
 import 'bottom_sheet_categories.dart';
 import 'bottom_sheet_filters_container.dart';
+import 'bottom_sheet_ratings.dart';
 
 String selectedFilter = 'categories';
 
@@ -92,6 +92,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                         onTap: () {
                           setState(() {
                             selectedFilter = 'Ratings';
+                            activeFilter = const BottomSheetRatings();
                           });
                         },
                         child: BottomSheetFiltersContainer(
@@ -110,67 +111,80 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 ),
               ],
             ),
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      categoryFilterGetController.categoryFilterList.clear();
-                      maxPriceController.clear();
-                      minPriceController.clear();
-                      ratingController.clear();
-                    });
-                  },
-                  child: Container(
-                    color: Get.isDarkMode ? kDarkModeColor : Colors.white,
-                    width: Get.width * 0.4,
-                    height: Get.height * 0.1,
-                    child: Center(
-                      child: Text(
-                        'Clear all'.tr.toUpperCase(),
-                        style: GoogleFonts.caveat(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.back();
-                    // getController.filteredList(category: [kCategoriesList[1]]);
-                    productlistController.filteredList(
-                      minPrice: int.tryParse(minPriceController.text) ?? 0,
-                      maxPrice: int.tryParse(maxPriceController.text) ?? 999999,
-                      minRating: double.tryParse(ratingController.text) ?? 1,
-                      category: [
-                        ...categoryFilterGetController.categoryFilterList
-                      ],
-                    );
-                    categoryFilterGetController.categoryFilterList.clear();
-                  },
-                  child: Container(
-                    color: Colors.redAccent,
-                    width: Get.width * 0.6,
-                    height: Get.height * 0.1,
-                    child: Center(
-                      child: Text(
-                        'Apply filters'.tr.toUpperCase(),
-                        style: GoogleFonts.caveat(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            BottomSheetBottomBar(
+                categoryFilterGetController,
+                maxPriceController,
+                minPriceController,
+                ratingController,
+                productlistController),
           ],
         ),
       ),
+    );
+  }
+
+  Row BottomSheetBottomBar(
+      CategoryFilter categoryFilterGetController,
+      TextEditingController maxPriceController,
+      TextEditingController minPriceController,
+      TextEditingController ratingController,
+      ProductList productlistController) {
+    return Row(
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              selectedRating = 1;
+              categoryFilterGetController.categoryFilterList.clear();
+              maxPriceController.clear();
+              minPriceController.clear();
+              ratingController.clear();
+            });
+          },
+          child: Container(
+            color: Get.isDarkMode ? kDarkModeColor : Colors.white,
+            width: Get.width * 0.4,
+            height: Get.height * 0.1,
+            child: Center(
+              child: Text(
+                'Clear all'.tr.toUpperCase(),
+                style: GoogleFonts.caveat(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Get.back();
+            productlistController.filteredList(
+              minPrice: int.tryParse(minPriceController.text) ?? 0,
+              maxPrice: int.tryParse(maxPriceController.text) ?? 999999,
+              minRating: selectedRating,
+              category: [...categoryFilterGetController.categoryFilterList],
+            );
+            categoryFilterGetController.categoryFilterList.clear();
+            selectedRating = 1;
+          },
+          child: Container(
+            color: Colors.redAccent,
+            width: Get.width * 0.6,
+            height: Get.height * 0.1,
+            child: Center(
+              child: Text(
+                'Apply filters'.tr.toUpperCase(),
+                style: GoogleFonts.caveat(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

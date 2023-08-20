@@ -1,11 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:codelandia_team_work_ecommerce/hive/favorite_list_hive.dart';
 import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart';
+import 'package:codelandia_team_work_ecommerce/utilities/constants/category_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../generated/assets.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;
@@ -62,12 +65,19 @@ class _ProductScreenState extends State<ProductScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.product.category.tr,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey.shade500,
+                    Card(
+                      color: Color(
+                          kCategoryBackgroundColor[widget.product.category]!),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          widget.product.category.tr,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                     Text(
@@ -166,15 +176,15 @@ class _ProductScreenState extends State<ProductScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Image.asset(
-                            "assets/images/BRCB_BLACK_4075d6b0c8.png",
+                            Assets.imagesBRCBBLACK4075d6b0c8,
                             width: MediaQuery.sizeOf(context).width / 4,
                           ),
                           Image.asset(
-                            "assets/images/download.jpg",
+                            Assets.imagesDownload,
                             width: MediaQuery.sizeOf(context).width / 4,
                           ),
                           Image.asset(
-                            "assets/images/download.png",
+                            Assets.assetsImagesDownload,
                             width: MediaQuery.sizeOf(context).width / 4,
                           ),
                         ],

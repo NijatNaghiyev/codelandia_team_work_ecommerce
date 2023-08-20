@@ -26,17 +26,14 @@ class BottomSheetFiltersContainer extends StatelessWidget {
       width: Get.width * 0.4,
       height: 60,
       child: Center(
-        child: Obx(() {
-          return Text(
-            text.tr +
-                ' ${((text == 'categories') && categoryFilterController.categoryFilterList.length != 0) ? categoryFilterController.categoryFilterList.length : ''}',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.caveat(
-              fontWeight: FontWeight.w600,
-              fontSize: 24,
-            ),
-          );
-        }),
+        child: Text(
+          text.tr,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.caveat(
+            fontWeight: FontWeight.w600,
+            fontSize: 24,
+          ),
+        ),
       ),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:codelandia_team_work_ecommerce/get_x/localization/messages.dart';
-import 'package:codelandia_team_work_ecommerce/screens/main_screen.dart';
+import 'package:codelandia_team_work_ecommerce/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/adapters.dart';
 
 import 'hive/dark_mode.dart';
 import 'utilities/methods/hive_init.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale('en_US'), // ? Translation
       fallbackLocale: const Locale('en_US'),
       debugShowCheckedModeBanner: false,
-      home: const MainScreen(),
+      home: const SplashScreen(),
     );
   }
 }

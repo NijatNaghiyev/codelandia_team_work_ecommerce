@@ -64,7 +64,7 @@ class CategoryDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => _onBackPressed(context),
         ),
         elevation: 0,
@@ -78,10 +78,10 @@ class CategoryDetailsPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            color: Colors.black,
+            color: Colors.white,
             icon: const Icon(Icons.shopping_bag),
             onPressed: () {
-              _showShoppingBag(context); // Show bottom sheet
+              // _showShoppingBag(context);
             },
           ),
         ],
@@ -101,10 +101,6 @@ class CategoryDetailsPage extends StatelessWidget {
                       child: IntrinsicHeight(
                         child: Container(
                           padding: const EdgeInsets.all(16.0),
-                          margin: const EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                            color: bgColor.withOpacity(0.7),
-                          ),
                           child: Text(
                             categoryDescriptions[category]!,
                             style: const TextStyle(
@@ -158,19 +154,6 @@ class CategoryDetailsPage extends StatelessWidget {
                             : Colors.grey[500],
                         height: 5,
                         width: 35,
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              category.tr.toUpperCase(),
-                              style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
-                            ),
-                          )
-                        ],
                       ),
                     ],
                   ),

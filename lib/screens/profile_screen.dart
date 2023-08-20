@@ -26,7 +26,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             clipBehavior: Clip.none,
             children: [
               Container(
-                color: Colors.teal,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xFF11998e),
+                      Color(0xFF38ef7d),
+                    ],
+                  ),
+                ),
                 height: Get.height * 0.3,
                 width: Get.width,
                 child: SafeArea(

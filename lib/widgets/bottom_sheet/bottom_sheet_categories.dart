@@ -28,7 +28,7 @@ class _BottomSheetCategoriesState extends State<BottomSheetCategories> {
                       categoryFilterGetController.categoryFilterList.contains(
                     kCategoriesList[index],
                   ),
-                  title: Text(kCategoriesList[index]),
+                  title: Text(kCategoriesList[index].tr),
                   onChanged: (value) {
                     setState(
                       () {

@@ -1,11 +1,9 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
-import 'package:codelandia_team_work_ecommerce/service/api/products_api.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/category_card.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 
 import '../get_x/state/product_list_get_x.dart';
 import '../utilities/methods/text_field.dart';
@@ -156,24 +154,8 @@ class DiscoverScreen extends StatelessWidget {
             Container(
               width: Get.width,
               color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
-              child: FutureBuilder(
-                future: fetchProducts(),
-                builder: (context, snapshot) {
-                  return !snapshot.hasData
-                      ? ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: Get.height * 0.4,
-                            minWidth: Get.width,
-                          ),
-                          child: Center(
-                            child: Lottie.asset(
-                                'assets/lottie/lottie_loading.json'),
-                          ),
-                        )
-                      : GetBuilder<ProductList>(
-                          builder: (controller) => const ProductCard(),
-                        );
-                },
+              child: GetBuilder<ProductList>(
+                builder: (controller) => const ProductCard(),
               ),
             ),
           ],
