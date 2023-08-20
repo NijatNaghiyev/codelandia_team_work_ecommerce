@@ -25,8 +25,8 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              child: SwitchListTile(
-                activeColor: Colors.deepOrange,
+              color: !languageBool ? Colors.teal : null,
+              child: ListTile(
                 title: Row(
                   children: [
                     SizedBox(
@@ -38,10 +38,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                     Text('english'.tr),
                   ],
                 ),
-                value: !languageBool,
-                onChanged: (bool value) {
+                onTap: () {
                   setState(() {});
-                  languageBool = !value;
+                  languageBool = !languageBool;
                   languageBool == true
                       ? Get.updateLocale(const Locale('az'))
                       : Get.updateLocale(const Locale('en_US'));
@@ -55,8 +54,8 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              child: SwitchListTile(
-                activeColor: Colors.deepOrange,
+              color: languageBool ? Colors.teal : null,
+              child: ListTile(
                 title: Row(
                   children: [
                     SizedBox(
@@ -68,10 +67,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                     Text('azerbaijani'.tr),
                   ],
                 ),
-                value: languageBool,
-                onChanged: (bool value) {
+                onTap: () {
                   setState(() {});
-                  languageBool = value;
+                  languageBool = !languageBool;
                   languageBool == false
                       ? Get.updateLocale(const Locale('en_US'))
                       : Get.updateLocale(const Locale('az'));

@@ -1,92 +1,117 @@
-import 'package:codelandia_team_work_ecommerce/screens/languages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/custom_icon_container.dart';
+import '../widgets/profile_card.dart';
 
 bool isDarkModeBoolean = Get.isDarkMode;
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   final String imageUrl;
 
   const ProfileScreen({super.key, required this.imageUrl});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const SizedBox(height: 36),
-            Center(
-              child: CircleAvatar(
-                radius: 60,
-                backgroundImage: NetworkImage(imageUrl),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.photo_camera,
-                  color: Colors.grey,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  'Edit Profile'.tr,
-                  style: const TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Column(
-              children: [
-                CustomIconContainer(
-                  icon: Icons.account_box_rounded,
-                  text: 'my account'.tr,
-                  iconColor: Colors.orange,
-                ),
-                const SizedBox(height: 30),
-                CustomIconContainer(
-                  icon: Icons.notifications_none_rounded,
-                  text: 'notification'.tr,
-                  iconColor: Colors.orange,
-                ),
-                const SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    Get.to(() => const LanguagesScreen());
-                  },
-                  child: CustomIconContainer(
-                    icon: Icons.language,
-                    text: 'languages'.tr,
-                    iconColor: Colors.orange,
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                color: Colors.teal,
+                height: Get.height * 0.3,
+                width: Get.width,
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      'profile'.tr.toUpperCase(),
+                      style: GoogleFonts.openSans(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 26,
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 30),
-                CustomIconContainer(
-                  icon: Icons.dark_mode_outlined,
-                  text: 'dark mode'.tr,
-                  iconColor: Colors.orange,
+              ),
+              Positioned(
+                bottom: -70,
+                left: 0,
+                right: 0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    elevation: 20,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.edit,
+                                  color: Colors.teal,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ5LQ_DxoLymfDeucoZhD1yOd_Pen-IiUxW4weM7_UAEPU2LUlEDvHvvcOKRUm3q-hW6c&usqp=CAU'),
+                          ),
+                          Text(
+                            'James William',
+                            style: GoogleFonts.openSans(
+                                fontWeight: FontWeight.bold, fontSize: 26),
+                          ),
+                          Text(
+                            '@jameswilliam',
+                            style: GoogleFonts.openSans(
+                                fontWeight: FontWeight.w500, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 30),
-                CustomIconContainer(
-                  icon: Icons.help_outline,
-                  text: 'help center'.tr,
-                  iconColor: Colors.orange,
-                ),
-                const SizedBox(height: 30),
-                CustomIconContainer(
-                  icon: Icons.logout_rounded,
-                  text: 'log out'.tr,
-                  iconColor: Colors.orange,
-                )
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 90),
+          const ProfileCardWidget(
+            icon: Icons.person_2_outlined,
+            text: 'my account',
+          ),
+          const ProfileCardWidget(
+              icon: Icons.notifications_none_outlined, text: 'notification'),
+          const ProfileCardWidget(
+              icon: Icons.language_outlined, text: 'languages'),
+          const ProfileCardWidget(
+              icon: Icons.dark_mode_outlined, text: 'dark mode'),
+          const ProfileCardWidget(
+              icon: Icons.help_outline, text: 'help center'),
+          const ProfileCardWidget(icon: Icons.logout, text: 'log out'),
+        ],
       ),
     );
   }

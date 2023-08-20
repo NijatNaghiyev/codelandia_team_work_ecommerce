@@ -26,8 +26,8 @@ class _MainScreenState extends State<MainScreen> {
       body: activeScreen,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 12,
-        selectedItemColor: Colors.deepOrange,
-        selectedIconTheme: const IconThemeData(color: Colors.deepOrange),
+        selectedItemColor: Colors.teal,
+        selectedIconTheme: const IconThemeData(color: Colors.teal),
         currentIndex: _currentIndex,
         onTap: (value) {
           setState(() {});

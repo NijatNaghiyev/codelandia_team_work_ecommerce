@@ -5,12 +5,10 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'hive/dark_mode.dart';
+import 'utilities/methods/hive_init.dart';
 
 Future<void> main() async {
-  await Hive.initFlutter();
-  await Hive.openBox('darkMode');
-  await Hive.openBox('favoriteListBox');
-  await Hive.openBox('cartListBox');
+  await hiveInit();
   initialTheme(); // ? Dark mode
   runApp(const MyApp());
 }

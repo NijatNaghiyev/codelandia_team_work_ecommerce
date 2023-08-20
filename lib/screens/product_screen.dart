@@ -3,6 +3,7 @@ import 'package:codelandia_team_work_ecommerce/hive/favorite_list_hive.dart';
 import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -22,10 +23,17 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.teal,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.closeCurrentSnackbar();
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: Colors.teal,
+                duration: Duration(seconds: 3),
+                message: 'Copy to clipboard'.tr,
+              ));
+            },
             icon: const Icon(Icons.share),
           ),
           Obx(() {
@@ -55,7 +63,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.product.category,
+                      widget.product.category.tr,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -65,7 +73,9 @@ class _ProductScreenState extends State<ProductScreen> {
                     Text(
                       widget.product.title,
                       style: const TextStyle(
-                          fontSize: 32, fontWeight: FontWeight.w500),
+                        fontSize: 32,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -103,7 +113,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           effect: const JumpingDotEffect(
                               dotWidth: 20,
                               dotHeight: 8,
-                              activeDotColor: Colors.orange),
+                              activeDotColor: Colors.teal),
                         ),
                       ],
                     ),
@@ -201,7 +211,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
-                        color: Colors.orange,
+                        color: Colors.teal,
                       ),
                     ),
                   ],
@@ -209,7 +219,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.shopping_cart_outlined),
-                  color: Colors.orange,
+                  color: Colors.teal,
                 )
               ],
             ),

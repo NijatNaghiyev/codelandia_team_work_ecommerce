@@ -4,6 +4,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'Copy to clipboard': 'Copy to clipboard',
           'Submit': 'Submit',
           'Rating': 'Rating',
           'Filters': 'Filters',
@@ -12,7 +13,7 @@ class Messages extends Translations {
           'or more ratings': 'or more ratings',
           'Edit Profile': 'Edit Profile',
           'my account': 'My Account',
-          '': 'Notification',
+          'notification': 'Notification',
           'help center': 'Help Center',
           'log out': 'Log Out',
           'english': 'English',
@@ -48,6 +49,7 @@ class Messages extends Translations {
           "lighting": "lighting",
         },
         'az': {
+          'Copy to clipboard': 'Link kopyalandı',
           'Submit': 'Təsdiq et',
           'Rating': 'Reytinq',
           'Filters': 'Filterlər',

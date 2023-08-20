@@ -1,17 +1,19 @@
 import 'package:codelandia_team_work_ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constants/category_constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../get_x/state/product_list_get_x.dart';
+import '../utilities/constants/category_constants.dart';
+
+ProductList getController = Get.put(ProductList());
 
 class CategoryDetailsPage extends StatelessWidget {
   final String category;
   final String imageUrl;
   final int index;
   final Map backgroundColor;
-  ProductList getController = Get.put(ProductList());
 
-  CategoryDetailsPage({
+  const CategoryDetailsPage({
     super.key,
     required this.category,
     required this.imageUrl,
@@ -20,6 +22,7 @@ class CategoryDetailsPage extends StatelessWidget {
   });
 
   void _onBackPressed(BuildContext context) {
+    getController.getData();
     Navigator.pop(context);
   }
 
@@ -83,50 +86,108 @@ class CategoryDetailsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Container(
-                  padding: const EdgeInsets.all(16.0),
-                  margin: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 80),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: IntrinsicHeight(
+                        child: Container(
+                          padding: const EdgeInsets.all(16.0),
+                          margin: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            color: bgColor.withOpacity(0.7),
+                          ),
+                          child: Text(
+                            categoryDescriptions[category]!,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: IntrinsicHeight(
+                        child: AspectRatio(
+                          aspectRatio: 3 / 5,
+                          child: Card(
+                            clipBehavior: Clip.hardEdge,
+                            shadowColor: Colors.white,
+                            child: Image.network(
+                              imageUrl,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                Container(
+                  height: 80,
+                  width: Get.width,
                   decoration: BoxDecoration(
-                    color: bgColor.withOpacity(0.7),
-                  ),
-                  child: Text(
-                    categoryDescriptions[category]!,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20),
                     ),
                   ),
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Hero(
-                    tag: category,
-                    child: Image.network(
-                      imageUrl,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Container(
+                        color: Get.isDarkMode
+                            ? Colors.grey[300]
+                            : Colors.grey[500],
+                        height: 5,
+                        width: 35,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              category.tr.toUpperCase(),
+                              style: GoogleFonts.openSans(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          Expanded(child: ProductCard()),
-        ],
+              ],
+            ),
+            Container(
+              width: Get.width,
+              color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
+              child: const ProductCard(),
+            ),
+          ],
+        ),
       ),
-      backgroundColor: Color(backgroundColor[category]),
+      backgroundColor: Color(
+        backgroundColor[category],
+      ),
     );
   }
 }
