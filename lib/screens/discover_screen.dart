@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:codelandia_team_work_ecommerce/service/api/products_api.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/category_card.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/product_card.dart';
@@ -8,7 +9,7 @@ import 'package:lottie/lottie.dart';
 
 import '../get_x/state/product_list_get_x.dart';
 import '../utilities/methods/text_field.dart';
-import '../widgets/bottom_sheet.dart';
+import '../widgets/bottom_sheet/bottom_sheet.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({super.key});
@@ -48,8 +49,23 @@ class DiscoverScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Get.bottomSheet(
-                        const BottomSheetWidget(),
+                      showFlexibleBottomSheet(
+                        bottomSheetBorderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        minHeight: 0,
+                        initHeight: 0.5,
+                        maxHeight: 1,
+                        anchors: [0, 0.5, 1],
+                        isSafeArea: true,
+                        context: context,
+                        builder:
+                            (context, scrollController, bottomSheetOffset) {
+                          return BottomSheetWidget(
+                            scrollController: scrollController,
+                          );
+                        },
                       );
                     },
                     child: Container(
@@ -154,7 +170,9 @@ class DiscoverScreen extends StatelessWidget {
                                 'assets/lottie/lottie_loading.json'),
                           ),
                         )
-                      : const ProductCard();
+                      : GetBuilder<ProductList>(
+                          builder: (controller) => const ProductCard(),
+                        );
                 },
               ),
             ),

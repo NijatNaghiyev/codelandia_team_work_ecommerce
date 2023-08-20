@@ -24,16 +24,18 @@ class ProductList extends GetxController {
     double minRating = 1,
     List<String> category = const [],
   }) {
-    productListGetX.value = productListGetX
-        .where(
-          (element) => category.isEmpty
-              ? (minPrice < element.price && element.price < maxPrice) &&
-                  (minRating < element.rating)
-              : (minPrice < element.price && element.price < maxPrice) &&
-                  (minRating < element.rating) &&
-                  (category.contains(element.category)),
-        )
-        .toList();
+    fetchProducts().then((value) => productListGetX.value = value.where(
+          (element) {
+            return (category.isEmpty)
+                ? (minPrice < element.price && element.price < maxPrice) &&
+                    (minRating < element.rating)
+                : (minPrice < element.price && element.price < maxPrice) &&
+                    (minRating < element.rating) &&
+                    (category.contains(element.category.toLowerCase()));
+          },
+        ).toList());
+    print(category.contains(productListGetX[0].category.toLowerCase()));
+    print('ProductListGetx: ${productListGetX}');
   }
 
   /// To search for product's title
