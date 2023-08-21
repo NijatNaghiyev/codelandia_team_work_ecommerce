@@ -7,7 +7,9 @@ import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart
 import 'package:codelandia_team_work_ecommerce/utilities/constants/category_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
+import '../generated/assets.dart';
 import '../utilities/methods/product_card_title_rating.dart';
 import 'category_details_page.dart';
 
@@ -30,143 +32,147 @@ class FavoriteScreen extends StatelessWidget {
         title: Text('favorite'.tr),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: favoriteListController.favoriteList.length,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    ProductScreen(product: favoriteList[index]),
-              ),
-            );
-          },
-          child: Dismissible(
-            onDismissed: (direction) {
-              putAndRemoveFavoriteList(favoriteList[index].id);
-            },
-            background: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Container(
-                color: Colors.red,
-                child: Padding(
-                  padding: EdgeInsets.only(left: Get.width * 0.8),
-                  child: const Icon(
-                    Icons.delete,
-                    size: 50,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            direction: DismissDirection.endToStart,
-            key: ValueKey(favoriteList[index].id),
-            child: Card(
-              color: Colors.teal[300],
-              clipBehavior: Clip.hardEdge,
-              child: Row(
-                children: [
-                  IntrinsicHeight(
-                    child: Image.network(
-                      favoriteList[index].thumbnail,
-                      width: Get.width * 0.4,
-                      height: Get.height * 0.22,
-                      fit: BoxFit.fitHeight,
+      body: favoriteListController.favoriteList.length == 0
+          ? Center(
+              child: Lottie.asset(Assets.lottieNotFound),
+            )
+          : ListView.builder(
+              itemCount: favoriteListController.favoriteList.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ProductScreen(product: favoriteList[index]),
+                    ),
+                  );
+                },
+                child: Dismissible(
+                  onDismissed: (direction) {
+                    putAndRemoveFavoriteList(favoriteList[index].id);
+                  },
+                  background: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                      color: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: Get.width * 0.8),
+                        child: const Icon(
+                          Icons.delete,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                  IntrinsicHeight(
-                    child: Column(
+                  direction: DismissDirection.endToStart,
+                  key: ValueKey(favoriteList[index].id),
+                  child: Card(
+                    color: Colors.teal[300],
+                    clipBehavior: Clip.hardEdge,
+                    child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Wrap(
-                            children: [
-                              Card(
-                                color: Color(kCategoryBackgroundColor[
-                                    favoriteList[index].category]!),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    favoriteList[index].category.tr,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                color: Colors.blue,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    favoriteList[index].brand.tr,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                        IntrinsicHeight(
+                          child: Image.network(
+                            favoriteList[index].thumbnail,
+                            width: Get.width * 0.4,
+                            height: Get.height * 0.22,
+                            fit: BoxFit.fitHeight,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                        IntrinsicHeight(
+                          child: Column(
                             children: [
-                              buildProductCardTitleRating(
-                                context,
-                                favoriteList,
-                                index,
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Wrap(
+                                  children: [
+                                    Card(
+                                      color: Color(kCategoryBackgroundColor[
+                                          favoriteList[index].category]!),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(
+                                          favoriteList[index].category.tr,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.blue,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(
+                                          favoriteList[index].brand.tr,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    buildProductCardTitleRating(
+                                      context,
+                                      favoriteList,
+                                      index,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Card(
+                                    color: Colors.purple,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(
+                                        "${'Stock'.tr}: ${favoriteList[index].stock.toString()}",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Card(
+                                    color: Colors.pink,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(
+                                        "${'Price'.tr}: \$${favoriteList[index].price.toString()}",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Card(
-                              color: Colors.purple,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(
-                                  "${'Stock'.tr}: ${favoriteList[index].stock.toString()}",
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Card(
-                              color: Colors.pink,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(
-                                  "${'Price'.tr}: \$${favoriteList[index].price.toString()}",
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

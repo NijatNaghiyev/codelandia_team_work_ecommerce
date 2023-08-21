@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:codelandia_team_work_ecommerce/get_x/state/product_list_get_x.dart';
 import 'package:codelandia_team_work_ecommerce/hive/cart_list_hive.dart';
 import 'package:flutter/material.dart';
@@ -60,18 +61,12 @@ class ProductCard extends StatelessWidget {
                           childAspectRatio: 1 / 1.4,
                         ),
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductScreen(
-                                      product:
-                                          getController.productListGetX[index]),
-                                ),
-                              );
-                            },
-                            child: Container(
+                          return OpenContainer(
+                            transitionDuration: Duration(milliseconds: 500),
+                            openBuilder: (context, action) => ProductScreen(
+                                product: getController.productListGetX[index]),
+                            closedBuilder: (context, openContainer) =>
+                                Container(
                               clipBehavior: Clip.hardEdge,
                               width: MediaQuery.sizeOf(context).width * 0.4,
                               height: MediaQuery.sizeOf(context).height * 0.17,

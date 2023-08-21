@@ -6,7 +6,7 @@ import '../utilities/constants/category_constants.dart';
 
 ProductList getController = Get.put(ProductList());
 
-class CategoryDetailsPage extends StatelessWidget {
+class CategoryDetailsPage extends StatefulWidget {
   final String category;
   final String imageUrl;
   final int index;
@@ -20,14 +20,25 @@ class CategoryDetailsPage extends StatelessWidget {
     required this.backgroundColor,
   });
 
+  @override
+  State<CategoryDetailsPage> createState() => _CategoryDetailsPageState();
+}
+
+class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   void _onBackPressed(BuildContext context) {
     getController.getData();
     Navigator.pop(context);
   }
 
   @override
+  void initState() {
+    super.initState();
+    getController.filteredList(category: [kCategoriesList[widget.index]]);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Color bgColor = Color(backgroundColor[category]);
+    Color bgColor = Color(widget.backgroundColor[widget.category]);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +49,7 @@ class CategoryDetailsPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          category.toUpperCase(),
+          widget.category.toUpperCase(),
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
         ),
@@ -60,7 +71,7 @@ class CategoryDetailsPage extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            categoryDescriptions[category]!,
+                            categoryDescriptions[widget.category]!,
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -73,7 +84,7 @@ class CategoryDetailsPage extends StatelessWidget {
                     CircleAvatar(
                       radius: 100,
                       backgroundImage: NetworkImage(
-                        imageUrl,
+                        widget.imageUrl,
                       ),
                     ),
                   ],
