@@ -4,6 +4,10 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'Price': 'Price',
+          'Stock': 'Stock',
+          'Total price': 'Total price',
+          'Order': 'Order',
           'Range': 'Range',
           'Apply filters': 'Apply filters',
           'Clear all': 'Clear all',
@@ -56,6 +60,10 @@ class Messages extends Translations {
           "lighting": "lighting",
         },
         'az': {
+          'Price': 'Qiymət',
+          'Stock': 'Mövcud say',
+          'Total price': 'Yekun qiymət',
+          'Order': 'Sifariş et',
           'Range': 'Aralıq',
           'Apply filters': 'Təsdiq et',
           'Clear all': 'Təmizlə',
@@ -81,7 +89,7 @@ class Messages extends Translations {
           'languages': 'Dillər',
           'profile': 'Profil',
           'cart': 'Səbət',
-          'favorite': 'Sevimli',
+          'favorite': 'Sevimlilər',
           '  search products': '  Əşya axtarışı',
           'all': 'Hamısı',
           'discover': 'Kəşf et',

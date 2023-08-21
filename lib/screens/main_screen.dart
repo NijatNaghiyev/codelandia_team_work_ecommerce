@@ -1,5 +1,6 @@
 import 'package:codelandia_team_work_ecommerce/screens/cart_screen.dart';
 import 'package:codelandia_team_work_ecommerce/screens/discover_screen.dart';
+import 'package:codelandia_team_work_ecommerce/screens/favorite_screen.dart';
 import 'package:codelandia_team_work_ecommerce/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -50,6 +51,9 @@ class _MainScreenState extends State<MainScreen> {
     }
     if (_currentIndex == 2) {
       activeScreen = const CartScreen();
+    }
+    if (_currentIndex == 1) {
+      activeScreen = const FavoriteScreen();
     }
 
     return Scaffold(

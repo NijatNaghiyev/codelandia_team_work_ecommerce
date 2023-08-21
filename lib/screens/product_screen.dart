@@ -165,27 +165,60 @@ class _ProductScreenState extends State<ProductScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 5,
-                          color: Colors.orange,
+                          color: Colors.teal,
                         ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
                       ),
-                      child: Row(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset(
-                            Assets.imagesBRCBBLACK4075d6b0c8,
-                            width: MediaQuery.sizeOf(context).width / 4,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.asset(
+                                "assets/images/BRCB_BLACK_4075d6b0c8.png",
+                                width: MediaQuery.sizeOf(context).width / 4,
+                              ),
+                              Text(
+                                "\$${((widget.product.price - (widget.product.price / 100 * widget.product.discountPercentage)) / 24).toStringAsFixed(2)} x 24",
+                                style: const TextStyle(fontSize: 25),
+                              )
+                            ],
                           ),
-                          Image.asset(
-                            Assets.imagesDownload,
-                            width: MediaQuery.sizeOf(context).width / 4,
+                          const SizedBox(
+                            height: 20,
                           ),
-                          Image.asset(
-                            Assets.assetsImagesDownload,
-                            width: MediaQuery.sizeOf(context).width / 4,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.asset(
+                                "assets/images/download.jpg",
+                                width: MediaQuery.sizeOf(context).width / 4,
+                              ),
+                              Text(
+                                "\$${((widget.product.price - (widget.product.price / 100 * widget.product.discountPercentage)) / 18).toStringAsFixed(2)} x 18",
+                                style: const TextStyle(fontSize: 25),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.asset(
+                                "assets/images/download.png",
+                                width: MediaQuery.sizeOf(context).width / 4,
+                              ),
+                              Text(
+                                "\$${((widget.product.price - (widget.product.price / 100 * widget.product.discountPercentage)) / 12).toStringAsFixed(2)} x 12",
+                                style: const TextStyle(fontSize: 25),
+                              )
+                            ],
                           ),
                         ],
                       ),

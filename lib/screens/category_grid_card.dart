@@ -39,6 +39,7 @@ class CategoryGridCard extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
+              getController.filteredList(category: [kCategoriesList[index]]);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -51,52 +52,45 @@ class CategoryGridCard extends StatelessWidget {
                 ),
               );
             },
-            child: SizedBox(
-              height: 200,
-              width: 200,
-              child: Card(
-                clipBehavior: Clip.hardEdge,
-                margin: const EdgeInsets.all(5.0),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(kCategoryBackgroundColor[
-                              kCategoriesList[index]]!),
-                        ),
-                      ),
+            child: Card(
+              clipBehavior: Clip.hardEdge,
+              margin: const EdgeInsets.all(5.0),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(
+                          kCategoryBackgroundColor[kCategoriesList[index]]!),
                     ),
-                    Positioned.fill(
-                      child: FancyShimmerImage(
-                        imageUrl: kCategoryImages[kCategoriesList[index]]!,
-                        boxFit: BoxFit.cover,
-                      ),
+                  ),
+                  Positioned(
+                    child: FancyShimmerImage(
+                      imageUrl: kCategoryImages[kCategoriesList[index]]!,
+                      boxFit: BoxFit.cover,
                     ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        color: Color(kCategoryBackgroundColor[
-                                kCategoriesList[index]]!)
-                            .withOpacity(0.7),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        child: Center(
-                          child: Text(
-                            kCategoriesList[index].tr.toUpperCase(),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      color: Color(
+                              kCategoryBackgroundColor[kCategoriesList[index]]!)
+                          .withOpacity(0.7),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      child: Center(
+                        child: Text(
+                          kCategoriesList[index].tr.toUpperCase(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

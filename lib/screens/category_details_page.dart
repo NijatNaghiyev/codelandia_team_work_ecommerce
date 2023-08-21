@@ -37,20 +37,12 @@ class CategoryDetailsPage extends StatelessWidget {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Center(
-          child: Text(
-            category.toUpperCase(),
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w700),
-          ),
+        title: Text(
+          category.toUpperCase(),
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
         ),
-        actions: [
-          IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.shopping_bag),
-            onPressed: () {},
-          ),
-        ],
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

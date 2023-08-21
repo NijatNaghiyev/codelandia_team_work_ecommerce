@@ -1,8 +1,11 @@
 import 'package:circle_flags/circle_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
 
-bool languageBool = false;
+String selectedLanguage = Hive.box('language').get('language') == 'azerbaijan'
+    ? 'azerbaijan'
+    : 'english';
 
 class LanguagesScreen extends StatefulWidget {
   const LanguagesScreen({super.key});
@@ -16,7 +19,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.black : Colors.deepOrange,
+        backgroundColor: Get.isDarkMode ? Colors.black : Colors.teal,
         title: Text('languages'.tr),
         centerTitle: true,
       ),
@@ -25,7 +28,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: !languageBool ? Colors.teal : null,
+              color: selectedLanguage == 'english' ? Colors.teal : null,
               child: ListTile(
                 title: Row(
                   children: [
@@ -39,11 +42,12 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                   ],
                 ),
                 onTap: () {
+                  Hive.box('language').put('language', 'english');
                   setState(() {});
-                  languageBool = !languageBool;
-                  languageBool == true
+                  selectedLanguage == 'english'
                       ? Get.updateLocale(const Locale('az'))
                       : Get.updateLocale(const Locale('en_US'));
+                  selectedLanguage = 'english';
                 },
               ),
             ),
@@ -54,7 +58,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
-              color: languageBool ? Colors.teal : null,
+              color: selectedLanguage == 'azerbaijan' ? Colors.teal : null,
               child: ListTile(
                 title: Row(
                   children: [
@@ -68,11 +72,12 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                   ],
                 ),
                 onTap: () {
+                  Hive.box('language').put('language', 'azerbaijan');
                   setState(() {});
-                  languageBool = !languageBool;
-                  languageBool == false
+                  selectedLanguage == 'azerbaijan'
                       ? Get.updateLocale(const Locale('en_US'))
                       : Get.updateLocale(const Locale('az'));
+                  selectedLanguage = 'azerbaijan';
                 },
               ),
             ),

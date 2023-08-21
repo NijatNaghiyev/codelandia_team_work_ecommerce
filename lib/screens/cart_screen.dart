@@ -13,9 +13,6 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CartList cartsId = Get.put(CartList());
     ProductList allProducts = Get.put(ProductList());
-    List<Product> selectedProducts = allProducts.productListGetX
-        .where((i) => cartsId.cartList.contains(i.id))
-        .toList();
 
     return Scaffold(
       body: Container(
@@ -43,16 +40,16 @@ class CartScreen extends StatelessWidget {
         children: [
           Obx(() {
             return Text(
-              "Total price: \n${(allProducts.productListGetX.fold(0, (previousValue, element) {
-                    if (cartsId.cartList.contains(element.id)) {
-                      return previousValue +
-                          element.price *
-                              cartsId.cartList
-                                  .where((e) => e == element.id)
-                                  .length;
-                    }
-                    return previousValue;
-                  }).toDouble() * 0.9).toStringAsFixed(2)}",
+              "${"Total price".tr}: \n${'\$${(allProducts.productListGetX.fold(0.0, (previousValue, element) {
+                if (cartsId.cartList.contains(element.id)) {
+                  return previousValue +
+                      element.price *
+                          (100 - element.discountPercentage) /
+                          100 *
+                          cartsId.cartList.where((e) => e == element.id).length;
+                }
+                return previousValue;
+              })).toStringAsFixed(2)}'}",
               style: const TextStyle(
                 fontSize: 20,
                 color: Colors.teal,
@@ -68,9 +65,9 @@ class CartScreen extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const OrderScreen()));
             },
-            child: const Text(
-              "Order",
-              style: TextStyle(fontSize: 20),
+            child: Text(
+              "Order".tr,
+              style: const TextStyle(fontSize: 20),
             ),
           ),
         ],
