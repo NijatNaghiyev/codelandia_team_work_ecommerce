@@ -30,9 +30,13 @@ class _CartCardState extends State<CartCard> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {});
+                  cartListController.cartList
+                      .removeWhere((element) => element == widget.product.id);
+                },
                 icon: const Icon(
-                  Icons.delete_outline_rounded,
+                  Icons.delete,
                   color: Colors.teal,
                 ),
               ),
@@ -89,7 +93,10 @@ class _CartCardState extends State<CartCard> {
                   TextButton(
                     onPressed: () {
                       if (cartListController.cartList
-                          .any((element) => element == widget.product.id)) {
+                              .where((element) => element == widget.product.id)
+                              .toList()
+                              .length >
+                          1) {
                         setState(() {
                           cartListController.cartList.remove(widget.product.id);
                         });

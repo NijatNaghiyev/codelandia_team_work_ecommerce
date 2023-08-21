@@ -20,15 +20,22 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
-        child: GridView.builder(
-          itemCount: selectedProducts.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            mainAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) =>
-              CartCard(product: selectedProducts[index]),
-        ),
+        child: Obx(() {
+          return GridView.builder(
+            itemCount: allProducts.productListGetX
+                .where((e) => cartsId.cartList.contains(e.id))
+                .toList()
+                .length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              mainAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) => CartCard(
+                product: allProducts.productListGetX
+                    .where((e) => cartsId.cartList.contains(e.id))
+                    .toList()[index]),
+          );
+        }),
       ),
       bottomNavigationBar: BottomAppBar(
           child: Row(
