@@ -26,37 +26,6 @@ class CategoryDetailsPage extends StatelessWidget {
     Navigator.pop(context);
   }
 
-  void _showShoppingBag(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          color: Colors.transparent,
-          padding: const EdgeInsets.all(16.0),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                'Shopping Bag',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 16),
-              // You can add your shopping bag items or any other relevant content here
-              // Example:
-              Text('Item 1'),
-              Text('Item 2'),
-              Text('Item 3'),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     Color bgColor = Color(backgroundColor[category]);
@@ -80,9 +49,7 @@ class CategoryDetailsPage extends StatelessWidget {
           IconButton(
             color: Colors.white,
             icon: const Icon(Icons.shopping_bag),
-            onPressed: () {
-              // _showShoppingBag(context);
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -112,21 +79,10 @@ class CategoryDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: IntrinsicHeight(
-                        child: AspectRatio(
-                          aspectRatio: 3 / 5,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            shadowColor: Colors.white,
-                            child: Image.network(
-                              imageUrl,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                    CircleAvatar(
+                      radius: 100,
+                      backgroundImage: NetworkImage(
+                        imageUrl,
                       ),
                     ),
                   ],

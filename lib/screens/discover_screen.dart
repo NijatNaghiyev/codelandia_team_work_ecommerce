@@ -2,24 +2,49 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/category_card.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../get_x/state/product_list_get_x.dart';
 import '../utilities/methods/text_field.dart';
 import '../widgets/bottom_sheet/bottom_sheet.dart';
+import 'category_grid_card.dart';
 
-class DiscoverScreen extends StatelessWidget {
-  const DiscoverScreen({super.key});
+class DiscoverScreen extends StatefulWidget {
+  const DiscoverScreen({
+    super.key,
+  });
 
   @override
+  State<DiscoverScreen> createState() => _DiscoverScreenState();
+}
+
+ScrollController scrollController = ScrollController();
+
+class _DiscoverScreenState extends State<DiscoverScreen> {
+  @override
   Widget build(BuildContext context) {
+    void openNewPage(BuildContext context) {
+      int index = 0;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CategoryGridCard(
+            index: index,
+          ),
+        ),
+      );
+    }
+
     ProductList getController = Get.put(ProductList());
 
     TextEditingController searchController = TextEditingController();
+
     getController.getData();
     return SafeArea(
       child: SingleChildScrollView(
+        controller: scrollController,
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
@@ -48,7 +73,7 @@ class DiscoverScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       showFlexibleBottomSheet(
-                        bottomSheetBorderRadius: BorderRadius.only(
+                        bottomSheetBorderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20),
                         ),
@@ -96,7 +121,9 @@ class DiscoverScreen extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        openNewPage(context);
+                      },
                       icon: const Icon(
                         Icons.arrow_forward,
                       ),

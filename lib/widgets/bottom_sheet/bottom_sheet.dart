@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:codelandia_team_work_ecommerce/get_x/state/category_filter_list.dart';
 import 'package:codelandia_team_work_ecommerce/get_x/state/product_list_get_x.dart';
+import 'package:codelandia_team_work_ecommerce/widgets/bottom_sheet/bottom_sheet_price.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,12 +29,12 @@ class BottomSheetWidget extends StatefulWidget {
 }
 
 Widget activeFilter = const BottomSheetCategories();
+TextEditingController minPriceController = TextEditingController();
+TextEditingController maxPriceController = TextEditingController();
 
 class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController minPriceController = TextEditingController();
-    TextEditingController maxPriceController = TextEditingController();
     TextEditingController ratingController = TextEditingController();
     ProductList productlistController = Get.put(ProductList());
     CategoryFilter categoryFilterGetController = Get.put(CategoryFilter());
@@ -82,6 +83,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                         onTap: () {
                           setState(() {
                             selectedFilter = 'prices';
+                            activeFilter = const BottomSheetPrice();
                           });
                         },
                         child: BottomSheetFiltersContainer(
@@ -158,6 +160,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
         ),
         InkWell(
           onTap: () {
+            setState(() {});
             Get.back();
             productlistController.filteredList(
               minPrice: int.tryParse(minPriceController.text) ?? 0,
@@ -167,6 +170,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             );
             categoryFilterGetController.categoryFilterList.clear();
             selectedRating = 1;
+            minPriceController.clear();
+            maxPriceController.clear();
+            errorMin = false;
+            errorMax = false;
           },
           child: Container(
             color: Colors.redAccent,
