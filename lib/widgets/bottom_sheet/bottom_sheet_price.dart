@@ -1,5 +1,6 @@
 import 'package:codelandia_team_work_ecommerce/widgets/bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BottomSheetPrice extends StatefulWidget {
   const BottomSheetPrice({super.key});
@@ -17,6 +18,13 @@ class _BottomSheetPriceState extends State<BottomSheetPrice> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Text(
+          'Range'.tr,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        const SizedBox(
+          height: 40,
+        ),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: TextField(

@@ -1,7 +1,6 @@
 import 'package:codelandia_team_work_ecommerce/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../get_x/state/product_list_get_x.dart';
 import '../utilities/constants/category_constants.dart';
 
@@ -124,9 +123,7 @@ class CategoryDetailsPage extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color(
-        backgroundColor[category],
-      ),
+      backgroundColor: bgColor,
     );
   }
 }

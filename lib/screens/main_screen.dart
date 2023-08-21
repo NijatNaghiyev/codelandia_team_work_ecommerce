@@ -1,3 +1,4 @@
+import 'package:codelandia_team_work_ecommerce/screens/cart_screen.dart';
 import 'package:codelandia_team_work_ecommerce/screens/discover_screen.dart';
 import 'package:codelandia_team_work_ecommerce/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,10 @@ class _MainScreenState extends State<MainScreen> {
             'https://images.yourstory.com/cs/2/96eabe90392211eb93f18319e8c07a74/Imagejtb7-1684960500563.jpg',
       );
     }
+    if (_currentIndex == 2) {
+      activeScreen = const CartScreen();
+    }
+
     return Scaffold(
       body: activeScreen,
       bottomNavigationBar: AnimatedCrossFade(

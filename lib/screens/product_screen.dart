@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:codelandia_team_work_ecommerce/hive/cart_list_hive.dart';
 import 'package:codelandia_team_work_ecommerce/hive/favorite_list_hive.dart';
 import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart';
 import 'package:codelandia_team_work_ecommerce/utilities/constants/category_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../generated/assets.dart';
@@ -33,7 +33,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Get.closeCurrentSnackbar();
               Get.showSnackbar(GetSnackBar(
                 backgroundColor: Colors.teal,
-                duration: Duration(seconds: 3),
+                duration: const Duration(seconds: 3),
                 message: 'Copy to clipboard'.tr,
               ));
             },
@@ -72,7 +72,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
                           widget.product.category.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
@@ -226,11 +226,19 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.shopping_cart_outlined),
-                  color: Colors.teal,
-                )
+                Obx(
+                  () {
+                    return IconButton(
+                      onPressed: () {
+                        putAndRemoveCartList(widget.product.id);
+                      },
+                      icon: Icon(isCart(widget.product.id)
+                          ? Icons.shopping_cart
+                          : Icons.shopping_cart_outlined),
+                      color: Colors.teal,
+                    );
+                  },
+                ),
               ],
             ),
           ),

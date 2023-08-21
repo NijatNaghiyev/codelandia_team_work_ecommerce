@@ -16,7 +16,6 @@ class BottomSheetFiltersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CategoryFilter categoryFilterController = Get.put(CategoryFilter());
     return Container(
       color: selectedFilter == text
           ? Get.isDarkMode

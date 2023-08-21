@@ -4,6 +4,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'Range': 'Range',
           'Apply filters': 'Apply filters',
           'Clear all': 'Clear all',
           'Department': 'Brend',
@@ -55,6 +56,7 @@ class Messages extends Translations {
           "lighting": "lighting",
         },
         'az': {
+          'Range': 'Aralıq',
           'Apply filters': 'Təsdiq et',
           'Clear all': 'Təmizlə',
           'Department': 'Brend',

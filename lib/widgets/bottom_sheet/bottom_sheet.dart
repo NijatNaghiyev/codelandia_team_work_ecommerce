@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
-
 import 'package:codelandia_team_work_ecommerce/get_x/state/category_filter_list.dart';
 import 'package:codelandia_team_work_ecommerce/get_x/state/product_list_get_x.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/bottom_sheet/bottom_sheet_price.dart';

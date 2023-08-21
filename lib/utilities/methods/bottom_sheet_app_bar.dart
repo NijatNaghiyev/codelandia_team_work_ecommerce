@@ -14,11 +14,14 @@ Container buildBottomSheetAppBar(BuildContext context) {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Text(
-            'Filters'.tr.toUpperCase(),
-            style: GoogleFonts.caveat(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
+          Padding(
+            padding: const EdgeInsets.only(left: 40),
+            child: Text(
+              'Filters'.tr.toUpperCase(),
+              style: GoogleFonts.caveat(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
           ),
           const Spacer(),

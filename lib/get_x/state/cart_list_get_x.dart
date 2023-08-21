@@ -7,6 +7,5 @@ class CartList extends GetxController {
   void onInit() {
     super.onInit();
     cartList.value = Hive.box('cartListBox').get('cartList') ?? [];
-    print(cartList);
   }
 }
