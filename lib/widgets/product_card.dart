@@ -62,7 +62,8 @@ class ProductCard extends StatelessWidget {
                         ),
                         itemBuilder: (context, index) {
                           return OpenContainer(
-                            transitionDuration: Duration(milliseconds: 500),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
                             openBuilder: (context, action) => ProductScreen(
                                 product: getController.productListGetX[index]),
                             closedBuilder: (context, openContainer) =>

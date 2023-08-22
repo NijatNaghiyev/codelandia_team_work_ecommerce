@@ -8,8 +8,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../generated/assets.dart';
-
 class ProductScreen extends StatefulWidget {
   final Product product;
 
@@ -31,11 +29,13 @@ class _ProductScreenState extends State<ProductScreen> {
           IconButton(
             onPressed: () {
               Get.closeCurrentSnackbar();
-              Get.showSnackbar(GetSnackBar(
-                backgroundColor: Colors.teal,
-                duration: const Duration(seconds: 3),
-                message: 'Copy to clipboard'.tr,
-              ));
+              Get.showSnackbar(
+                GetSnackBar(
+                  backgroundColor: Colors.teal,
+                  duration: const Duration(seconds: 3),
+                  message: 'Copy to clipboard'.tr,
+                ),
+              );
             },
             icon: const Icon(Icons.share),
           ),

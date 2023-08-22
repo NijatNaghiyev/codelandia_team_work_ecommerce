@@ -4,6 +4,8 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'Once You\'re in,\nYou can\'t leave':
+              'Once You\'re in,\nYou can\'t leave :)',
           'Price': 'Price',
           'Stock': 'Stock',
           'Total price': 'Total price',
@@ -60,6 +62,8 @@ class Messages extends Translations {
           "lighting": "lighting",
         },
         'az': {
+          'Once You\'re in,\nYou can\'t leave':
+              'Bir dəfə girdinsə,\nÇıxa bilməssən :)',
           'Price': 'Qiymət',
           'Stock': 'Mövcud say',
           'Total price': 'Yekun qiymət',

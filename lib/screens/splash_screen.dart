@@ -43,7 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       fontWeight: FontWeight.bold),
                   child: AnimatedTextKit(
                     animatedTexts: [
-                      WavyAnimatedText('Shopify'),
+                      WavyAnimatedText('Shopify',
+                          speed: const Duration(milliseconds: 500)),
                     ],
                     isRepeatingAnimation: false,
                   ),

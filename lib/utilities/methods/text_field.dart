@@ -16,16 +16,21 @@ Expanded buildTextField(
         height: 50,
         width: double.infinity,
         child: TextField(
-          onChanged: (value) {
+          onSubmitted: (value) {
             getController.searchedList(value);
           },
           controller: searchController,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.only(left: 10, top: 15),
             border: InputBorder.none,
-            suffixIcon: const Icon(
-              Icons.search,
-              color: Colors.black,
+            suffixIcon: IconButton(
+              onPressed: () {
+                getController.searchedList(searchController.text);
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
             ),
             hintText: '  search products'.tr,
           ),

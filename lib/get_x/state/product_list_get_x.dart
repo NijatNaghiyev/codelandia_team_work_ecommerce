@@ -38,13 +38,16 @@ class ProductList extends GetxController {
 
   /// To search for product's title
   void searchedList(String name) {
-    if (name.trim().length >= 3) {
-      productListGetX.value = productListGetX
-          .where(
-            (element) =>
-                element.title.toLowerCase().contains(name.trim().toLowerCase()),
-          )
-          .toList();
+    if (name.trim().length >= 2) {
+      fetchProducts().then(
+        (value) => productListGetX.value = value
+            .where(
+              (element) => element.title
+                  .toLowerCase()
+                  .contains(name.trim().toLowerCase()),
+            )
+            .toList(),
+      );
     } else {
       fetchProducts().then((value) => productListGetX.value = value);
     }

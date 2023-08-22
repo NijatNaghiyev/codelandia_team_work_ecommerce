@@ -2,6 +2,8 @@ import 'package:codelandia_team_work_ecommerce/screens/languages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../hive/dark_mode.dart';
 import '../screens/profile_screen.dart';
@@ -31,6 +33,15 @@ class _ProfileCardWidgetState extends State<ProfileCardWidget> {
           onTap: () {
             if (widget.text == 'languages') {
               Get.to(const LanguagesScreen());
+            }
+            if (widget.text == 'log out') {
+              ScaffoldMessenger.of(context).clearSnackBars();
+              showTopSnackBar(
+                Overlay.of(context),
+                CustomSnackBar.error(
+                  message: 'Once You\'re in,\nYou can\'t leave'.tr,
+                ),
+              );
             }
           },
           leading: Icon(
