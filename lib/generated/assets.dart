@@ -8,6 +8,8 @@ class Assets {
   static const String imagesDownload = 'assets/images/download.jpg';
   static const String lottieCard1 = 'assets/lottie/card_1.json';
   static const String lottieLottieLoading = 'assets/lottie/lottie_loading.json';
+  static const String lottieLottieValidation =
+      'assets/lottie/lottie_validation.json';
   static const String lottieNotFound = 'assets/lottie/not_found.json';
   static const String lottieSplashScreen = 'assets/lottie/splash_screen.json';
   static const String lottieSplashScreen2 =

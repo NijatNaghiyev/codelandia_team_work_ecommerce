@@ -62,28 +62,13 @@ class ProductCard extends StatelessWidget {
                         ),
                         itemBuilder: (context, index) {
                           return OpenContainer(
+                            closedColor: Colors.transparent,
                             transitionDuration:
                                 const Duration(milliseconds: 500),
                             openBuilder: (context, action) => ProductScreen(
                                 product: getController.productListGetX[index]),
-                            closedBuilder: (context, openContainer) =>
-                                Container(
+                            closedBuilder: (context, openContainer) => Card(
                               clipBehavior: Clip.hardEdge,
-                              width: MediaQuery.sizeOf(context).width * 0.4,
-                              height: MediaQuery.sizeOf(context).height * 0.17,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ],
-                              ),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment:

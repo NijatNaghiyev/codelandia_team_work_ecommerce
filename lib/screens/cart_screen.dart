@@ -1,22 +1,22 @@
 import 'package:codelandia_team_work_ecommerce/get_x/state/cart_list_get_x.dart';
 import 'package:codelandia_team_work_ecommerce/get_x/state/product_list_get_x.dart';
 import 'package:codelandia_team_work_ecommerce/screens/order_screen.dart';
-import 'package:codelandia_team_work_ecommerce/service/model/products_model.dart';
 import 'package:codelandia_team_work_ecommerce/widgets/cart_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../generated/assets.dart';
+import '../utilities/methods/get_total_price.dart';
+
+CartList cartsId = Get.put(CartList());
+ProductList allProducts = Get.put(ProductList());
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CartList cartsId = Get.put(CartList());
-    ProductList allProducts = Get.put(ProductList());
-
     return Scaffold(
       body: Container(
         color: Get.isDarkMode ? Colors.grey : Colors.grey[300],
@@ -52,21 +52,7 @@ class CartScreen extends StatelessWidget {
                       Obx(
                         () {
                           return Text(
-                            "${"Total price".tr}: \n${'\$${(allProducts.productListGetX.fold(
-                              0.0,
-                              (previousValue, element) {
-                                if (cartsId.cartList.contains(element.id)) {
-                                  return previousValue +
-                                      element.price *
-                                          (100 - element.discountPercentage) /
-                                          100 *
-                                          cartsId.cartList
-                                              .where((e) => e == element.id)
-                                              .length;
-                                }
-                                return previousValue;
-                              },
-                            )).toStringAsFixed(2)}'}",
+                            "${"Total price".tr}: \n${'\$${getTotalPrice().round()}'}",
                             style: const TextStyle(
                               fontSize: 20,
                               color: Colors.teal,
@@ -81,9 +67,13 @@ class CartScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const OrderScreen()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrderScreen(
+                                totalPrice: getTotalPrice().round(),
+                              ),
+                            ),
+                          );
                         },
                         child: Text(
                           "Order".tr,

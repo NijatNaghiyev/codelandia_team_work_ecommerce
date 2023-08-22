@@ -13,7 +13,6 @@ import 'package:lottie/lottie.dart';
 
 import '../generated/assets.dart';
 import '../hive/cart_list_hive.dart';
-import '../utilities/methods/product_card_title_rating.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -194,17 +193,22 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                        Text(
-                                          productListController.productListGetX
-                                              .where((e) =>
-                                                  e.id ==
-                                                  favoriteListController
-                                                      .favoriteList[index])
-                                              .first
-                                              .title,
-                                          style: GoogleFonts.openSans(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                        SizedBox(
+                                          width: Get.width * 0.5,
+                                          child: Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            productListController
+                                                .productListGetX
+                                                .where((e) =>
+                                                    e.id ==
+                                                    favoriteListController
+                                                        .favoriteList[index])
+                                                .first
+                                                .title,
+                                            style: GoogleFonts.openSans(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(height: 10),

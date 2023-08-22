@@ -15,7 +15,6 @@ Column buildProductCardTitleRating(
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           style: const TextStyle(
-            color: Colors.black,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
@@ -29,8 +28,7 @@ Column buildProductCardTitleRating(
         children: [
           Text(
             productListGetX[index].rating.toString(),
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             width: 10,
